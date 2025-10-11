@@ -236,3 +236,60 @@
 #     fptr.write(str(result) + '\n')
 
 #     fptr.close()
+
+
+
+
+
+
+
+
+
+
+
+
+# 10
+# def staircaseDetail(n):
+#     for i in range(1, n + 1):
+#         spaces = " " * (n - i)
+#         hashes = "#" * i
+#         print(spaces + hashes)
+#     return
+
+
+# staircaseDetail(int(5))
+
+
+
+
+
+
+
+
+
+
+# 11
+# import os
+# import sys
+
+# def timeConversion(s):
+#     period = s[-2:]          # AM or PM
+#     time = s[:-2]            # HH:MM:SS part
+#     hour, minute, second = time.split(':')
+
+#     if period == "AM":
+#         if hour == "12":
+#             hour = "00"
+#     else:  # PM
+#         if hour != "12":
+#             hour = str(int(hour) + 12)
+
+#     return f"{hour}:{minute}:{second}"
+
+
+# if __name__ == '__main__':
+#     fptr = open(os.environ['OUTPUT_PATH'], 'w')
+#     s = input().strip()
+#     result = timeConversion(s)
+#     fptr.write(result + '\n')
+#     fptr.close()
