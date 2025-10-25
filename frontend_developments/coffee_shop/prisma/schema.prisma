@@ -1,0 +1,61 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model user {
+  id Int @id @default(autoincrement())
+  email String @db.VarChar(100)
+  password String @db.VarChar(100)
+  create_at DateTime @default(now())
+  update_at DateTime @updatedAt
+  UserInfo UserInfo?
+}
+
+
+model UserInfo {
+  id Int @id @default(autoincrement())
+  username String @db.VarChar(45) @unique
+  first_name String? @db.VarChar(45) @unique
+  last_name String? @db.VarChar(45) @unique
+  address String @db.VarChar(255)
+  phone_number Int
+  profile String? @db.VarChar(255)
+  userId Int @unique
+  User user @relation(fields: [userId], references: [id])
+  create_at DateTime @default(now())
+  update_at DateTime @updatedAt
+}
+
+
+model Category{
+  id Int @id @default(autoincrement())
+  c_name String @db.VarChar(25) @unique
+  c_image String @db.VarChar(45)
+  product Product[]
+  create_at DateTime @default(now())
+  update_at DateTime @updatedAt
+  
+}
+
+model Product{
+  id Int @id @default(autoincrement())
+  p_title String @db.VarChar(255)
+  p_image String @db.VarChar(255)
+  price Int
+  p_desc String @db.Text
+  c_name String
+  category Category @relation(fields: [c_name], references: [c_name])
+  create_at DateTime @default(now())
+  update_at DateTime @updatedAt
+}
